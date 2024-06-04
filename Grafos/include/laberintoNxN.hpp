@@ -16,7 +16,7 @@ std::ostream& operator <<(std::ostream& os, coordenada C);
 struct pared
 {
     coordenada a, b;
-    pared(coordenada x = coordenada(0, 0), coordenada y = coordenada(0, 0)): a{x}, b{y} {}
+    pared(coordenada x = coordenada(), coordenada y = coordenada()): a{x}, b{y} {}
 };
 
 Lista<coordenada> laberintoNxN(size_t N, const Lista<pared>& lis, coordenada o, coordenada d, typename GrafoMC<int>::tCoste& coste);

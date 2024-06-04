@@ -5,7 +5,7 @@
 
 std::ostream& operator <<(std::ostream& os, coordenada C)
 {
-    os << C.x << " " << C.y;
+    os << "(" << C.x << ", " << C.y << ")";
     return os;
 }
 
