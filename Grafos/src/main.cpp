@@ -7,6 +7,7 @@
 #include "alg_grafoPMC.hpp"
 
 #include "diamPseudoC.hpp"
+#include "laberintoNxN.hpp"
 
 #include <vector>
 
@@ -14,13 +15,15 @@
 void pruebaGrafo();
 void pruebaDijkstra();
 void pruebaDPC();
+void pruebaLaberintoNxN();
 
 
 int main()
 {
     //pruebaGrafo();
     //pruebaDijkstra();
-    pruebaDPC();
+    //pruebaDPC();
+    pruebaLaberintoNxN();
     
     std::cout << std::endl << std::endl << "System Pause" << std::endl;
 }
@@ -88,4 +91,28 @@ void pruebaDPC()
     g[3][2] = g[2][3] = 200;
     g[2][0] = g[0][2] = 50;
     std::cout << diamPseudoC(g) << std::endl;
+}
+
+void pruebaLaberintoNxN()
+{
+    std::cout << "Empieza" << std::endl;
+    Lista<pared> paredes;
+    pared pa;
+    pa.a = coordenada(4, 0);
+    pa.b = coordenada(3, 0);
+    paredes.insertar(pa, paredes.fin());
+    pa.a = coordenada(0, 2);
+    pa.b = coordenada(0, 3);
+    paredes.insertar(pa, paredes.fin());
+    pa.a = coordenada(2, 3);
+    pa.b = coordenada(3, 3);
+    paredes.insertar(pa, paredes.fin());
+    int coste;
+    Lista<coordenada> res = laberintoNxN(5, paredes, coordenada(0, 0), coordenada(4, 4), coste);
+    Lista<coordenada>::posicion p;
+    for(p = res.primera(); p != res.fin(); p = res.siguiente(p))
+    {
+        std::cout << res.elemento(p) << ", ";
+    }
+    std::cout << std::endl << "El coste ha sido " << coste << std::endl;
 }
