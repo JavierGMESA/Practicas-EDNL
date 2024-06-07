@@ -8,6 +8,7 @@
 
 #include "diamPseudoC.hpp"
 #include "laberintoNxN.hpp"
+#include "tumbuctu2.hpp"
 
 #include <vector>
 
@@ -16,6 +17,7 @@ void pruebaGrafo();
 void pruebaDijkstra();
 void pruebaDPC();
 void pruebaLaberintoNxN();
+void PruebaAT2();
 
 
 int main()
@@ -23,8 +25,8 @@ int main()
     //pruebaGrafo();
     //pruebaDijkstra();
     //pruebaDPC();
-    pruebaLaberintoNxN();
-    
+    //pruebaLaberintoNxN();
+    PruebaAT2();
     std::cout << std::endl << std::endl << "System Pause" << std::endl;
 }
 
@@ -115,4 +117,28 @@ void pruebaLaberintoNxN()
         std::cout << res.elemento(p) << ", ";
     }
     std::cout << std::endl << "El coste ha sido " << coste << std::endl;
+}
+
+void PruebaAT2()
+{
+    GrafoMA g(7);
+    std::vector<coordenada> v(7);
+    g[0][1] = g[0][2] = g[2][3] = g[4][5] = true;
+    v[0] = coordenada(0, 0);
+    v[1] = coordenada(0, 1);
+    v[2] = coordenada(1, 0);
+    v[3] = coordenada(1, 1);
+    v[4] = coordenada(0, 2);
+    v[5] = coordenada(1, 2);
+    v[6] = coordenada(2, 1);
+    matriz<Linea> m = ArchiTumbuctu2(v, g);
+    for(int i = 0; i < m.dimension(); ++i)
+    {
+        for(int j = 0; j < m.dimension(); ++j)
+        {
+            std::cout << "De la isla " << i << " a la isla " << j << " la linea es:" << std::endl;
+            std::cout << "De la ciudad " << m[i][j].a << " a la ciudad " << m[i][j].b;
+            std::cout << " con coste " << m[i][j].c << std::endl << std::endl;
+        }
+    }
 }
